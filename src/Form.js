@@ -5,7 +5,7 @@ export default function Form() {
         fullname:"",
         email: "",
         password: "",
-        passwordConfirm: "",
+        Confirmpassword: "",
         joinedNewsletter: true
     })
 
@@ -19,7 +19,7 @@ export default function Form() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        if(formData.password === formData.passwordConfirm) {
+        if(formData.password === formData.Confirmpassword) {
             console.log("Successfully signed up")
         } else {
             console.log("Passwords do not match")
@@ -32,7 +32,7 @@ export default function Form() {
     }
 
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <div className="title">Welcome</div>
       <div className="subtitle">Let's create your account!</div>
       <div className="input-container ic1">
@@ -88,7 +88,7 @@ export default function Form() {
           className="input"
           name="Confirmpassword"
           onChange={handleChange}
-          value={formData.passwordConfirm}
+          value={formData.Confirmpassword}
         />
         <div className="cut cut-Confirmpassword"></div>
         <label htmlFor="Confirmpassword" className="placeholder">
@@ -105,7 +105,7 @@ export default function Form() {
         />
         <label htmlFor="okayToEmail">I want to join the newsletter</label>
       </div>
-      <button className="submit">submit</button>
+      <button className="submit">Submit</button>
     </form>
   )
 }
