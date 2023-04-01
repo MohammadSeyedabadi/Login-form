@@ -70,14 +70,15 @@ body {
   top: -20px;
   transform: translateY(0);
   transition: transform 200ms;
-  width: 76px;
 }
-
-.cut-short {
+.cut-fullname{
+    width:72px ;
+}
+.cut-email {
   width: 50px;
 }
 .cut-password {
-  width: 71px;
+  width: 72.5px;
 }
 .cut-Confirmpassword {
   width: 117px;

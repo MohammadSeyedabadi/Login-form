@@ -1,21 +1,53 @@
 import React from 'react'
 
 export default function Form() {
+    const [formData, setFormData] = React.useState({
+        fullname:"",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+        joinedNewsletter: true
+    })
+
+    function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value
+        }))
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        if(formData.password === formData.passwordConfirm) {
+            console.log("Successfully signed up")
+        } else {
+            console.log("Passwords do not match")
+            return
+        }
+        
+        if(formData.joinedNewsletter) {
+            console.log("Thanks for signing up for our newsletter!")
+        }
+    }
+
   return (
-    <div className="form">
+    <form className="form">
       <div className="title">Welcome</div>
       <div className="subtitle">Let's create your account!</div>
       <div className="input-container ic1">
         <input
           type="text"
           placeholder=" "
-          id="name"
+          id="fullname"
           className="input"
-          name="name"
+          name="fullname"
+          onChange={handleChange}
+          value={FormData.fullname}
         />
-        <div className="cut cut-short"></div>
-        <label htmlFor="name" className="placeholder">
-          Name
+        <div className="cut cut-fullname"></div>
+        <label htmlFor="fullname" className="placeholder">
+          Full name
         </label>
       </div>
       <div className="input-container ic2">
@@ -25,8 +57,10 @@ export default function Form() {
           id="email"
           className="input"
           name="email"
+          onChange={handleChange}
+          value={formData.email}
         />
-        <div className="cut cut-short"></div>
+        <div className="cut cut-email"></div>
         <label htmlFor="email" className="placeholder">
           Email
         </label>
@@ -38,6 +72,8 @@ export default function Form() {
           id="password"
           className="input"
           name="password"
+          onChange={handleChange}
+          value={formData.password}
         />
         <div className="cut cut-password"></div>
         <label htmlFor="password" className="placeholder">
@@ -51,6 +87,8 @@ export default function Form() {
           id="Confirmpassword"
           className="input"
           name="Confirmpassword"
+          onChange={handleChange}
+          value={formData.passwordConfirm}
         />
         <div className="cut cut-Confirmpassword"></div>
         <label htmlFor="Confirmpassword" className="placeholder">
@@ -62,12 +100,12 @@ export default function Form() {
           id="okayToEmail"
           type="checkbox"
           name="joinedNewsletter"
-          //onChange={handleChange}
-          //checked={formData.joinedNewsletter}
+          onChange={handleChange}
+          checked={formData.joinedNewsletter}
         />
         <label htmlFor="okayToEmail">I want to join the newsletter</label>
       </div>
       <button className="submit">submit</button>
-    </div>
+    </form>
   )
 }
